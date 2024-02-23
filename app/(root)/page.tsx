@@ -5,8 +5,6 @@ const Home = () => {
   return (
     <div>
       <p>Home</p>
-
-      <UserButton afterSwitchSessionUrl="/" />
     </div>
   )
 }
