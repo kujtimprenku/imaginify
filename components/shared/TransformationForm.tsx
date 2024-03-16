@@ -18,10 +18,11 @@ import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, defaultValues, transformationTypes } from "@/constants";
-import {CustomField} from "@/components/shared/CustomField";
-import {AspectRatioKey, debounce, deepMergeObjects} from "@/lib/utils";
+import { CustomField } from "@/components/shared/CustomField";
+import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils";
 import { updateCredits } from "@/lib/actions/user.actions";
 import MediaUploader from "@/components/shared/MediaUploader";
+import TransformedImage from "@/components/shared/TransformedImage";
 
 export const formSchema = z.object({
   title: z.string(),
@@ -88,14 +89,14 @@ export const TransformationForm =  ({ action, data = null, userId, type, creditB
     }, 1000);
   }
 
-  // TODO: return to update the credits.
+  // TODO: Update creditFee to something else.
   const onTransformHandler = async () => {
     setIsTransforming(true);
     setTransformationConfig(deepMergeObjects(newTransformation, transformationConfig));
     setNewTransformation(null);
 
     startTransition(async () => {
-      // await updateCredits(userId, creditFee);
+      await updateCredits(userId, -1);
     })
   }
 
@@ -193,6 +194,16 @@ export const TransformationForm =  ({ action, data = null, userId, type, creditB
               />
             )}
           />
+
+        <TransformedImage
+          image={image}
+          type={type}
+          title={form.getValues().title}
+          isTransforming={isTransforming}
+          setIsTransforming={setIsTransforming}
+          transformationConfig={transformationConfig}
+
+        />
         </div>
 
         <div className="flex flex-col gap-4">
