@@ -38,13 +38,13 @@ const TransformedImage = ({
         )}
       </div>
 
-      {image?.public_id && transformationConfig ? (
+      {image?.publicId && transformationConfig ? (
         <div className="relative">
           <CldImage
             width={getImageSize(type, image, "width")}
             height={getImageSize(type, image, "height")}
-            src={image?.public_id}
-            alt={image?.title}
+            src={image?.publicId}
+            alt={image.title}
             sizes={"(max-width: 767px) 100vw, 50vw"}
             placeholder={dataUrl as PlaceholderValue}
             className="transformed-image"
@@ -54,7 +54,7 @@ const TransformedImage = ({
             onError={() => {
               debounce(() => {
                 setIsTransforming && setIsTransforming(false);
-              }, 8000)
+              }, 8000)()
             }}
             {...transformationConfig}
           />
