@@ -9,7 +9,8 @@ export const Test = () => {
                 text: "Learn web development on MDN!",
                 url: "https://developer.mozilla.org",
             }).then((result) => {
-                console.log({result})})
+                console.log({result})}).catch((err) => {
+                console.log({err})})
         } else  {
             alert('wrong')
         }
