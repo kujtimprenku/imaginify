@@ -16,9 +16,6 @@ export const Test = () => {
         }
     }
     return (
-        <button onClick={() => {
-
-
-        }}>Share</button>
+        <button onClick={handleShare}>Share</button>
     )
 }
