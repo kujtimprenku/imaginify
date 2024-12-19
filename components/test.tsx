@@ -11,6 +11,7 @@ export const Test = () => {
             }).then((result) => {
                 console.log({result})}).catch((err) => {
                 console.log({err})})
+                console.log({err})})
         } else  {
             alert('wrong')
         }
