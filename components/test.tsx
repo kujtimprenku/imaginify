@@ -107,9 +107,9 @@ export const Test = () => {
 
 </body></html>`
     return (
-        <>
-            <iframe srcDoc={html} />
+        <div className="w-full h-screen ">
+            <iframe srcDoc={html} width="100%" height="100%"/>
             <button onClick={handleShare}>Share</button>
-        </>
+        </div>
     )
 }
