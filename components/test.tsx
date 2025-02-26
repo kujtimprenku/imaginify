@@ -2,19 +2,7 @@
 
 export const Test = () => {
 
-    const handleShare = async () => {
-        if (navigator?.share) {
-            navigator.share({
-                title: "MDN",
-                text: "Learn web development on MDN!",
-                url: "https://developer.mozilla.org",
-            }).then((result) => {
-                console.log({result})}).catch((err) => {
-                console.log({err})})
-        } else  {
-            alert('wrong')
-        }
-    }
+    const nonce = Math.random().toString(36).substr(2, 8);
 
     const html = `<html lang="en"><head>
     <meta charset="UTF-8">
@@ -24,7 +12,8 @@ export const Test = () => {
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" nonce="ab216c76-7166-4c68-8bfe-3be0eae4183e"></script>
     <style>  </style>
-<meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' 'nonce-ab216c76-7166-4c68-8bfe-3be0eae4183e' https://cdnjs.cloudflare.com; style-src 'self' 'nonce-ab216c76-7166-4c68-8bfe-3be0eae4183e' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; "></head>
+     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'nonce-${nonce}'; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+
 <body>
     <div class="mockup">
         
@@ -96,8 +85,8 @@ export const Test = () => {
 </footer>
 
 <!-- Materialize css initialization JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" nonce="ab216c76-7166-4c68-8bfe-3be0eae4183e"></script>
-<script src="" nonce="ab216c76-7166-4c68-8bfe-3be0eae4183e">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" nonce="${nonce}"></script>
+<script src="" nonce="${nonce}">
   document.addEventListener('DOMContentLoaded', function() {
     M.AutoInit();
   });
@@ -109,7 +98,6 @@ export const Test = () => {
     return (
         <div className="w-full h-screen ">
             <iframe srcDoc={html} width="100%" height="100%"/>
-            <button onClick={handleShare}>Share</button>
         </div>
     )
 }
